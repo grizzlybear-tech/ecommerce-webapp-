@@ -1,14 +1,13 @@
 import Navbar from "../components/Navbar";
 import ProductCard from "../components/ProductCard";
-import { fetchProducts } from "../lib/api";
+import { getProducts } from "../lib/api";
 
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
   let data = [];
   try {
-    const response = await fetchProducts();
-    data = response.data;
+    data = await getProducts();
   } catch (error) {
     console.error("Failed to fetch products:", error.message);
   }

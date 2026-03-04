@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Navbar from "../../../components/Navbar";
 import { useCart } from "../../../context/CartContext";
+import { getProduct } from "../../../lib/api";
 
 export default function ProductDetail() {
     const { id } = useParams();
@@ -16,15 +17,17 @@ export default function ProductDetail() {
     };
 
     useEffect(() => {
-        async function fetchProduct() {
-            const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
-            const res = await fetch(`${API_URL}/products/${id}`);
-            const data = await res.json();
-            setProduct(data);
+        async function fetchProductData() {
+            try {
+                const data = await getProduct(id);
+                setProduct(data);
+            } catch (error) {
+                console.error("Failed to load product", error);
+            }
         }
 
         if (id) {
-            fetchProduct();
+            fetchProductData();
         }
     }, [id]);
 
