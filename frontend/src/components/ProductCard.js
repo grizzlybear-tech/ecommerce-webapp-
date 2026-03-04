@@ -5,9 +5,9 @@ export default function ProductCard({ product }) {
         <div className="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col h-full cursor-pointer">
             <div className="relative overflow-hidden aspect-[4/3] bg-gray-100 w-full">
                 <img
-                    src={product.image}
+                    src={product.image || "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"}
                     alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
             </div>
 
